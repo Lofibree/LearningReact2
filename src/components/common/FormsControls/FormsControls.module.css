@@ -1,0 +1,50 @@
+.textareaBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.textareaBox textarea,
+.textareaBox input
+{
+    max-width: 280px;
+    max-height: 70px;
+    min-width: 140px;
+    min-height: 50px;
+    background-color: rgb(251, 191, 191);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 17px;
+} 
+
+.textareaBox.error textarea,
+.textareaBox.error input
+{
+    border: 2px solid red;
+}
+.spanBox {
+    display: flex;
+    align-items: center;
+}
+.error span {
+    font-size: 17px;
+    color: rgb(92, 21, 21);
+    font-family: cursive;
+}
+
+.button {
+    border-radius: 10px; 
+    padding: 5px;
+    background-color: black;
+    width: 50px;
+    color: white;
+    transition: 0.2s ease;
+}
+.button:hover {
+    cursor: pointer;
+    transition: 0.2s ease;
+    background-color: grey;
+}

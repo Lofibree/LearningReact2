@@ -1,0 +1,57 @@
+.descriptionBlock {
+    padding: 10px;
+}
+
+
+.profileCard {
+    /* height: 400px; */
+}
+
+.bgImgProfile {
+    width: auto;
+    border-radius: 10px;
+    height: 300px;
+    background-image: url('https://sun9-19.userapi.com/TFvuzfqZ3eu1B1_aevMvPhuV_1AuRiMJJ3A0Kg/6B8bmA91iJ8.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.profileInfo {
+    /* height: 100px; */
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    margin-top: -25px;
+    padding: 20px;
+    padding-top: 5px;
+    position: relative;
+    display: flex;
+
+}
+.profileImg {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 5px solid white;
+    float: left;
+    position: absolute;
+    bottom: 55px;
+}
+
+
+.infoWrapper {
+    display: grid;
+    grid-template-rows: 40px 1fr;
+    align-items: center;
+    margin-left: 180px;
+    width: 215px;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: 700;
+}
+.additionalInfo {
+    font-size: 15px;
+    color: rgb(76, 76, 76);
+    font-weight: 200;
+}

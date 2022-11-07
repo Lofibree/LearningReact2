@@ -1,0 +1,61 @@
+.navdiv {
+    grid-area: n;
+    background-color: blueviolet;
+    background-color: #21438C;
+    min-height: 500px;
+    padding: 7px;
+    font-size: 24px;
+    -webkit-box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    border-radius: 10px;
+}
+
+.nav {
+    background-color: blueviolet;
+    background-color: #21438C;
+    padding: 7px;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+a.activeLink {
+    -webkit-box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    color: rgb(230, 88, 230);
+    background-color: rgb(69, 69, 128);
+    font-weight: bold;
+    padding: 5px;
+    margin-top: 20px;
+    margin: 5px;
+    font-size: 26px;
+}
+
+.friendsEl {
+    margin-top: 100%;
+}
+
+.friends {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.friends img {
+    width: 3rem;
+    height: 3rem;
+    margin: 0;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.friendItem {
+    font-size: 16px;
+    text-align: center;
+}

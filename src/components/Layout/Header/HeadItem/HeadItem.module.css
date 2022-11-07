@@ -1,0 +1,42 @@
+.item {
+    float: left;
+    margin: 10px;
+    font-size: 16px;
+
+    grid-gap: 10px;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 15px;
+    /* background: #dddddd; */
+    color: white;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(245, 119, 119, 0.5);
+    box-shadow: 0 5px 10px 0 rgba(252, 118, 118, 0.5);
+    transition: 0.2s ease;
+}
+
+.item:hover {
+    cursor: pointer;
+    background-color:rgba(245, 119, 119, 0.5);
+    color: white;
+    transition: 0.2s ease;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(245, 119, 119, 0.5);
+    box-shadow: 0 10px 20px 0 rgba(252, 118, 118, 0.5);
+    transition: 0.2s ease;
+}
+.itemLogin{
+    font-size: 12px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+}
+.itemLogin .loginInfo {
+    margin: 5px;
+}
+.itemLogin .logoutBtn {
+    height: 20px;
+    transition: 0.2s ease;
+}
+.itemLogin .logoutBtn:hover {
+    cursor: pointer;
+    transition: 0.2s ease;
+}

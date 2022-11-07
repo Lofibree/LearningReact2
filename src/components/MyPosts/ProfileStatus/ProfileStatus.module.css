@@ -1,0 +1,6 @@
+.editBtn:hover {
+    cursor: pointer;
+}
+.editBtn {
+    margin-left: 5px;    
+}

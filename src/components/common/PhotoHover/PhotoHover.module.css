@@ -1,0 +1,86 @@
+.photoHover {
+    display: flex;
+    align-items: center;
+    /* height: auto; */
+}
+.leftSide {
+    position: relative;
+}
+.layOnBgCard {
+    visibility: hidden;
+    position: absolute;
+    font-size: 35px;
+    color: white;
+    top: 10px;
+    right: 10px;
+    border-radius: 10px;
+    transition: 0.5s ease;
+    transform: scale(0.05);
+    padding: 5px;
+}
+.layOnBgCard:hover {
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+.layOnBgCard.active {
+    visibility: visible;
+    transition: 0.5s ease;
+    z-index: 5;
+    transform: scale(1);
+    -webkit-box-shadow: 0 10px 30px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 10px 30px 0 rgb(0 0 0 / 50%);
+}
+.stylePhoto {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    min-width: 500px;
+    transition: 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    /* height: auto; */
+}
+.stylePhoto.active {
+    background-color: black;
+    opacity: 0.5;
+    z-index: 5;
+    transition: 0.5s ease;
+}
+.imgCommentsBox {
+    position: relative;
+    width: 250px;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+.authorCard {
+    position: absolute;
+    top: 0;
+    height: 70px;
+    width: 100%;
+    border-top-right-radius: 10px;
+    /* border-bottom-right-radius: 10px; */
+    background-color: grey;
+    display: flex;
+    align-items: center;
+}
+.img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.name a{
+    margin: 5px;
+    margin-left: 10px;
+    height: 30px;
+    font-size: 15px;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+.name a:hover {
+    cursor: pointer;
+    color: rgb(134, 50, 134);
+    transition: 0.2s ease;
+}

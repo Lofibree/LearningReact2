@@ -1,0 +1,100 @@
+.dialogs {
+    -webkit-box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    background-color: #e2e9ff;
+    background: #516189;
+    border-radius: 10px;
+}
+
+.dialogsItems {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.dialog {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.dialog img {
+    width: 50px;
+    height: 50px;
+    margin-right: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.dialog:active {
+    color:aqua;
+    background-color: rgb(225, 119, 119);
+}
+
+.dialog:hover {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dialog .person{
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin: 15px;
+    transition: 0.3s ease;
+    text-decoration: none;
+}
+
+.newMessBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.addDialogBtn {
+    font-size: 40px;
+    transition: 0.2s ease;
+    color: white;
+    /* float: right; */
+}
+.addDialogBtn:hover {
+    cursor: pointer;
+    color: black;
+    transition: 0.2s ease;
+}
+.newAddDialogText{
+    display: none;
+    font-size: 20px;
+    background: #516189;
+    color:rgb(208 132 255);
+    padding: 5px;
+    margin: 10px;
+    min-width: 50px;
+    max-width: 200px;
+    max-height: 50px;
+    min-height: 50px;
+    border: 2px rgb(94, 16, 16) solid;
+    border-radius: 10px;
+}
+.newAddDialogText.active{
+    display: block;
+}
+.completeAddDialogBtn {
+    display: none;
+    font-size: 20px;
+}
+.completeAddDialogBtn.active {
+    display: block;
+}
+.completeAddDialogBtn:hover {
+    cursor: pointer;
+    color: white;
+    transition: 0.2s ease;
+}

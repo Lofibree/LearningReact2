@@ -1,0 +1,120 @@
+
+.posts {
+    /* margin: 10px; */
+    padding: 10px;
+    /* padding-left: 50px; */
+    color: white;
+    background-color: rgb(33, 96, 123);
+    -webkit-box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.posts .myPosts {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.newPostBox {
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+
+.newPostText{
+    font-size: 20px;
+    background-color: rgb(33, 96, 123);
+    color: rgb(213, 118, 118);
+    padding: 5px;
+    margin: 5px;
+    min-width: 150px;
+    max-width: 200px;
+    min-height: 100px;
+    max-height: 200px;
+    border: 2px rgb(213, 118, 118) solid;
+    border-radius: 10px;
+    transition: 0.2s ease;
+}
+
+.newPostText:hover{
+    -webkit-box-shadow: 0 15px 45px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 15px 45px 0 rgb(0 0 0 / 50%);
+    transition: 0.2s;
+}
+
+.newPostText:focus{
+    border: 4px rgb(213, 118, 118) solid;
+    -webkit-box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    outline: none;
+}
+.btnMess {
+    font-size: 25px;
+    transition: 0.5s ease;
+
+}
+.btnMess:hover {
+    cursor: pointer;
+    color: white;
+    transform: rotate(-90deg);
+    transition: 0.5s ease;
+}
+
+
+
+
+
+
+.button {
+    background-color: cadetblue;
+    border-radius: 10px;
+    margin: 5px;
+    width: auto;
+    font-size: 20px;
+    color: white
+}
+
+.button:hover {
+    color: black;
+    cursor: pointer; 
+}
+
+.pagesNumberBox {
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.pagesNumberBox span {
+    font-weight: 600;
+    padding: 2px;
+    font-size: 20px;
+    transition: 0.2s ease;
+}
+.pagesNumberBox span:hover {
+    cursor: pointer;
+    color: grey;
+    transition: 0.2s ease;
+}
+.activePage {
+    font-weight: 900;
+    color: black;
+}
+
+.fieldBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

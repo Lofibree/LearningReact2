@@ -1,0 +1,93 @@
+
+.message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 280px;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 90px;
+    border-bottom: black 1px solid;
+    border-bottom: 5px ridge rgba(208, 132, 255, 0.6);;
+}
+
+.headerMess {
+    display: grid;
+    grid-template-columns: 1fr 60px;
+    grid-gap: 10px;
+}
+
+.messText {
+    display: grid;
+    grid-template-columns: 30px 3fr 1fr;
+    grid-gap: 10px;
+    word-break: break-all;
+}
+
+.messText .date {
+    display: flex;
+    align-items: center;
+    min-width: 40px;
+}
+
+.editText {
+    grid-area: 't';
+    display: none;
+    font-size: 20px;
+    background: #516189;
+    color:rgb(208 132 255);
+    padding: 5px;
+    margin: 10px;
+    min-width: 50px;
+    max-width: 200px;
+    max-height: 50px;
+    min-height: 50px;
+    border: 2px rgb(94, 16, 16) solid;
+    border-radius: 10px;
+}
+.editText.active {
+    display: block;
+}
+
+
+
+
+.iconBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.editBtn {
+    visibility: visible;
+    transition: 0.5s ease;
+}
+.editBtn.active {
+    visibility: hidden;
+}
+.editBtn:hover {
+    cursor: pointer;
+    color: white;
+    transition: 0.2s ease;
+}
+.completeBtn {
+    display: none;
+    transition: 0.2s ease;
+}
+.completeBtn.active {
+    display: block;
+    transition: 0.2s ease;
+}
+.completeBtn:hover {
+    cursor: pointer;
+    color: white;
+    transition: 0.2s ease;
+}
+.deleteBtn {
+    transition: 0.2s ease;
+}
+.deleteBtn:hover {
+    cursor: pointer;
+    color: white;
+    transition: 0.2s ease;
+}
+

@@ -1,0 +1,126 @@
+*{
+    box-sizing: border-box;
+}
+
+.user {
+    -webkit-box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    width: 600px;
+    display: flex; 
+    justify-content: center;
+    flex-direction: column;
+}
+.userImgCardWrapper {
+    position: relative;
+    background-color: black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+.userImgCard {
+    width: auto;
+    border-radius: 10px;
+    min-height: 300px;
+    min-width: 100px;
+}
+
+.profileInfo {
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    margin-top: -25px;
+    padding: 10px;
+    position: relative;
+    display: flex;
+
+}
+.infoWrapper {
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    align-items: center;
+    margin-left: 180px;
+}
+.usersId {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 25px;
+}
+
+.userImgPlusName {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.userImg {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 5px solid white;
+    float: left;
+    position: absolute;
+    bottom: 30px;
+}
+.userImg:hover {
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.name {
+    font-size: 20px;
+    font-weight: 700;
+}
+.additionalInfo {
+    font-size: 15px;
+    color: rgb(76, 76, 76);
+    font-weight: 200;
+}
+.lookingForAJob {
+    margin: 5px auto;
+    font-weight: 600;
+}
+
+.userPhotosBox {
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.photosTitle {
+    padding: 5px;
+    margin: 5px;
+    font-size: 17px;
+    color: black;
+    -webkit-box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    width:fit-content;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.photos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.img {
+    align-content: center;
+    width: 175px;
+    height: 140px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: 0.2s ease;
+}
+.img:hover {
+    cursor: pointer;
+    transition: 0.2s ease;
+}

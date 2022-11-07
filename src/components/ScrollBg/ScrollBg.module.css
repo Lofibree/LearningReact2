@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+.bgImg {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(https://sun9-13.userapi.com/impf/7zWcVakrCcldKyMCC65R2oXDR7dypVoUX1IPrw/yAxB48ttnRA.jpg?size=1280x853&quality=96&sign=5b16d9bbcfe736909eead7c40fee4520&type=album);
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 230vh;
+    background-repeat: no-repeat;
+}
+.container {
+    padding: 75px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+p {
+    color: rgb(48, 48, 48);
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 10px;
+    }
+}

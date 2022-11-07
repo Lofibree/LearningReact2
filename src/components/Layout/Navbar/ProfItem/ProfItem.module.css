@@ -1,0 +1,17 @@
+.item {
+    color: white;
+}
+
+.item.active {
+    color: gold;
+    font-weight: bold;
+}
+.item:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.item a:hover {
+    color: white;
+    background-color:gold;
+}
