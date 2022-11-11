@@ -5,6 +5,7 @@ import MyPostsContainer from './MyPostsContainer';
 
 
 const Profile = (props) => {
+  // debugger;
 
   return (
     <div>

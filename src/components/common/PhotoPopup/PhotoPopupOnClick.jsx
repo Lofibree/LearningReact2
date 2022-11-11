@@ -8,7 +8,7 @@ const PhotoPopupOnClick = (props) => {
 
     return (
         <div>
-            <div  onClick={() => setPopupActive(true)}>
+            <div onClick={() => setPopupActive(true)}>
                 {props.children}
             </div>
             <PhotoPopup

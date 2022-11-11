@@ -29,14 +29,11 @@ const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_NEW_POST: {
-            // debugger;
-
             let newPost = {
                 id: state.posts.length + 1,
                 title: action.newPostAuthor,
                 body: action.newPostBody
             }
-            // debugger;
             return {
                 ...state,
                 posts: [...state.posts, newPost]
@@ -92,7 +89,6 @@ const profileReducer = (state = initialState, action) => {
             }
         }
         case SET_STATUS: {
-            // debugger;
             return {
                 ...state,
                 status: action.status
@@ -156,7 +152,7 @@ export const getParticularPostThunkCreator = (id) => {
 export const getCommentsThunkCreator = (id) => {
     return (dispatch) => {
         dispatch(setIsFetchingCommAC(true));
-        postsAPI.setComments(id)
+        postsAPI.setComments(id)  
             .then(data => {
                 dispatch(setIsFetchingCommAC(false));
                 dispatch(setCommentsAC(data))
@@ -181,19 +177,6 @@ export const updateStatusThunkCreator = (status) => {
             })
     }
 }
-// export const deletePostThunkCreator = (id) => {
-//     return (dispatch) => {
-//         postsAPI.deletePost(id)
-//             .then(data => {
-//                 debugger;
-//                 if (data.resultCode === 0) {
-//                     dispatch(deletePostAC(data));
-//                     alert(data)
-//                 }
-//             })
-//     }
-// }
-
 
 
 export default profileReducer; 

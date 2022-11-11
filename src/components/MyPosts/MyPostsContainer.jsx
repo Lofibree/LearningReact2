@@ -4,6 +4,7 @@ import MyPosts from './MyPosts';
 import { getPostsThunkCreator, getOnPagePostsThunkCreator, addNewPostAC } from '../../redux/profileReducer';
 import { connect } from 'react-redux/es/exports';
 import Preloader from '../common/Preloader/Preloader';
+import { getCurrentPage, getIsFetching, getPosts } from '../../redux/profileSelectors';
 
 
 class MyPoststAJAX extends React.Component {
@@ -36,18 +37,32 @@ class MyPoststAJAX extends React.Component {
 
 
 
+// let mapStateToProps = (state) => {
+//   return {
+//     postsEl: state.profilePage.posts
+//       .map(p => <PostItem
+//         id={p.id}
+//         body={p.body}
+//         title={p.title}
+//         index={state.profilePage.posts.indexOf(p)}
+//       />
+//       ),
+//     currentPage: state.profilePage.currentPage,
+//     isFetching: state.profilePage.isFetching
+//   }
+// }
 let mapStateToProps = (state) => {
   return {
-    postsEl: state.profilePage.posts
+    postsEl: getPosts(state)
       .map(p => <PostItem
         id={p.id}
         body={p.body}
         title={p.title}
-        index={state.profilePage.posts.indexOf(p)}
+        index={getPosts(state).indexOf(p)}
       />
       ),
-    currentPage: state.profilePage.currentPage,
-    isFetching: state.profilePage.isFetching
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state)
   }
 }
 

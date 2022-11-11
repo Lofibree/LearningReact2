@@ -1,12 +1,9 @@
 import React from 'react';
 import s from './MyPosts.module.css';
-import moment from 'moment';
-import { AiOutlineSend } from 'react-icons/ai'
-// import { Field, reduxForm } from 'redux-form';
-// import { Form, Field } from 'react-final-form'
-import {requiredField, maxLengthCreator} from './../../components/Utils/Validators/validators'
-import { TextArea } from '../common/FormsControls/FormsControls';
-import { Button } from '../common/FormsControls/FormsControls';
+import { Form, Field } from 'react-final-form'
+import { Button, Input, TextArea } from '../common/FormsControls/FormsControls';
+import { connect } from 'react-redux';
+import {addNewPostAC} from './../../redux/profileReducer'
 
 
 const MyPosts = (props) => {
@@ -14,8 +11,7 @@ const MyPosts = (props) => {
   let pagesArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const addNewPost = (values) => {
-    // debugger;
-    props.addNewPostAC(values.newPostBody, values.newPostAuthor);
+    props.addNewPostAC(values.title, values.postBody);
   }
 
   return (
@@ -35,33 +31,57 @@ const MyPosts = (props) => {
             })
           }
         </div>
-        {/* <AddNewPostForm onSubmit={addNewPost}/> */}
+        <MyPostsForm addNewPost={addNewPost}/>
         {props.postsEl}
       </div>
     </div>
   );
 };
 
-// const maxLength10 = maxLengthCreator(10);
-
-// const AddNewPostForm = (props) => {
-//   return (
-//     <Form>
-//       {(handleSubmit) => (
-//         <form onSubmit={handleSubmit}>
-//           <div className={s.fieldBox}>
-//             <Field component={TextArea} name={'newPostBody'} placeholder={'enter new post here'} validate={[requiredField, maxLength10]} />
-//             <Field component={TextArea} name={'newPostAuthor'} placeholder={'enter your name here'} validate={[requiredField, maxLength10]} />
-//             <Field component={Button}>Post</Field>
-//           </div>
-//         </form>
-//       )}
-//     </Form>
-//   )
-// }
 
 
-// const AddNewPostFormRedux = reduxForm({form: 'addNewPost'}) (AddNewPostForm)
+
+const MyPostsForm = (props) => {
+
+  const required = value => (value ? undefined : 'Required');
+  const minFieldLength = min => value => value.length >= min ? undefined : 'Too short'
+  const composeValidators = (...validators) => {
+      return (value) => (
+          validators.reduce((error, validator) => error || validator(value), undefined)
+      )
+  }
+
+  return (
+      <Form
+          onSubmit={(values) => {
+              props.addNewPost(values)
+          }}
+          render={renderProps => {
+              const { handleSubmit } = renderProps;
+              return (
+                  <form onSubmit={handleSubmit} className={s.formLogin}>
+                      <Field
+                          name='title'
+                          type='text'
+                          placeholder='title'
+                          validate={composeValidators(required, minFieldLength(5))}
+                          component={TextArea}
+                      />
+                      <Field
+                          name='postBody'
+                          type='text'
+                          validate={composeValidators(required, minFieldLength(5))}
+                          placeholder='postBody'
+                          component={TextArea}
+                      />
+                      <Button type='submit'>Post</Button>
+                  </form>
+              )
+          }}
+      >
+      </Form>
+  )
+}
 
 
-export default MyPosts;
+export default connect(null, {addNewPostAC}) (MyPosts)

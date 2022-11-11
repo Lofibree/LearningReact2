@@ -54,28 +54,32 @@ export const loginAC  = (email, password) => ({ type: LOGIN, loginData: {email, 
 export const getIsAuthThunkCreator = () => {
     return (dispatch) => {
         return loginAPI.setIsAuth().then(data => {
+            let {id, email, login, isAuth} = data.data; 
             if (data.resultCode === 0) {
-                let {id, email, login, isAuth} = data.data; 
                 dispatch(setAuthUserData(id, email, login, true));
-                usersAPI.setUserProfile(id).then(data => {
-                    let {lookingForAJob, photos} = data;
-                    dispatch(setMyProfileAC(lookingForAJob, photos));
-                })
-            }
+            }  
+            console.log('me');
+            return id;  
+        }).then(id => {
+            // debugger;
+            console.log('profile');
+            usersAPI.setUserProfile(id).then(data => {
+                let { lookingForAJob, photos } = data;
+                dispatch(setMyProfileAC(lookingForAJob, photos));
+            })
         })
-    } 
-} 
+    }
+}
 export const loginThunkCreator = (formData) => (dispatch) => {
     let {email, password} = formData;
     loginAPI.login(email, password).then(data => {
         if (data.resultCode === 0) {
             dispatch(loginAC(email, password))
-            dispatch(getIsAuthThunkCreator())
-        } else {
-            let message = data.messages.length > 0 ? data.messages[0] : 'Some error'
-            // dispatch(stopSubmit('login', { _error: message }))
         }
     })
+    .then(() => {
+        dispatch(getIsAuthThunkCreator())
+    }) 
 }
 export const logoutThunkCreator = () => {
     return (dispatch) => {

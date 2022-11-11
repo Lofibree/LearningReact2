@@ -7,18 +7,17 @@ import { addDialogAC } from '../../redux/messagesReducer';
 import { connect } from 'react-redux/es/exports';
 import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 import { compose } from 'redux';
+import { getDialogs, getNewDialogText } from '../../redux/dialogSelectors copy';
 
  
-
-
 let mapStateToProps = (state) => {
     return {
-        dialogsEl: state.messagePage.dialogs
+        dialogsEl: getDialogs(state)
             .map(d => <NavLink to={'/dialogs/' + d.id} className={s.person}>
                 <DialogListItem name={d.name} id={d.id} />
             </NavLink>
             ),
-        value: state.messagePage.newDialogText,
+        value: getNewDialogText(state),
     }
 }
 let mapDispatchToProps = (dispatch) => {
