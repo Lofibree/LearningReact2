@@ -43,13 +43,13 @@ const UserItem = (props) => {
                         <NavLink to={'/users/' + props.id}>{props.name}</NavLink>
                     </div>
                     <div className={s.location}>
-                        <div>Location: <br/>I'm citizen of the world</div>
+                        <div>Location: <br />I'm citizen of the world</div>
                     </div>
                 </div>
-                <div className={s.status}> 
+                <div className={s.status}>
                     {props.status !== null
-                    ? props.status
-                    : <span className={s.statusDefault}>I don't know what to say</span>
+                        ? props.status
+                        : <span className={s.statusDefault}>I don't know what to say</span>
                     }
                 </div>
             </div>

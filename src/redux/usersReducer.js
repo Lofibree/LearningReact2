@@ -22,6 +22,7 @@ let initialState = {
     currentPage: 3,
     isFetching: false,
     isFetchingUser: false,
+    isFollowed: false,
     status: 'no status',
     followingInProgress: []
 }
@@ -53,7 +54,6 @@ const usersReduser = (state = initialState, action) => {
             }
         }
         case SET_CURRENT_PAGE: {
-            // debugger;
             return {
                 ...state,
                 currentPage: action.currentPage
@@ -66,7 +66,6 @@ const usersReduser = (state = initialState, action) => {
             }
         }
         case SET_USER: {
-            // debugger;
             return {
                 ...state,
                 user: action.user
@@ -85,7 +84,6 @@ const usersReduser = (state = initialState, action) => {
             }
         }
         case TOGGLE_IS_FOLLOWING_PROGRESS: {
-            // debugger;
             return {
                 ...state,
                 followingInProgress: action.followingInProgress 
@@ -94,7 +92,6 @@ const usersReduser = (state = initialState, action) => {
             }
         }
         case SET_USER_STATUS: {
-            // debugger;
             return {
                 ...state,
                 status: action.status
@@ -121,7 +118,7 @@ export const setUserStatusAC = (status) => ({ type: SET_USER_STATUS, status })
 
 export const getUsersThunkCreator = (pageSize, currentPage) => {
     return (dispatch) => {
-        // debugger;
+        
         dispatch(setIsFetchingAC(true));
         usersAPI.setUsers(pageSize, currentPage)
             .then(data => {
@@ -178,7 +175,7 @@ export const getUserStatusThunkCreator = (id) => {
     return (dispatch) => {
         postsAPI.getStatus(id)
             .then(data => {
-                // debugger;
+                
                 dispatch(setUserStatusAC(data));
             })
     }

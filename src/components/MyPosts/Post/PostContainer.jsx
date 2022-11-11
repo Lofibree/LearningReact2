@@ -1,20 +1,12 @@
 import React from 'react';
 import Post from './Post';
-import { NavLink, useNavigate } from 'react-router-dom';
-import {useDispatch} from 'react-redux/es/hooks/useDispatch'
-import { deletePostAC, deletePostThunkCreator } from '../../../redux/profileReducer';
+import { useNavigate } from 'react-router-dom';
 
 
 const PostContainer = (props) => {
 
     const navigate = useNavigate();
-
-    const dispatch = useDispatch() 
-
-    // const deletePost = (id) => {
-    //     dispatch(deletePostThunkCreator(id))
-    // } 
-
+    
     const goBack = () => {
         navigate('/profile')
     }
@@ -22,7 +14,6 @@ const PostContainer = (props) => {
     return (
         <Post 
             {...props}
-            // deletePost={deletePost}
             goBack={goBack}
         />
     );

@@ -98,3 +98,11 @@
     color: white;
     transition: 0.2s ease;
 }
+
+.formLogin {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 15px;
+}

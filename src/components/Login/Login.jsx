@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Field } from 'react-final-form'
 import { loginThunkCreator } from '../../redux/authReducer';
-import PhotoPopupOnClick from '../common/PhotoPopup/PhotoPopupOnClick';
 import s from './Login.module.css'
 import {Button, Input} from './../common/FormsControls/FormsControls'
 import { connect } from 'react-redux';
@@ -21,11 +20,11 @@ const Login = (props) => {
 
     return (
         <div className={s.authorizeWrapper}>
-            <PhotoPopupOnClick>
-                <img src='https://sun9-80.userapi.com/impg/Icnvqh3rg6RbQzxLKUNGE40dYPCQz6zQKf2DXQ/rOX_FwkzH-E.jpg?size=1280x960&quality=95&sign=37106ba7c1301dac7a9efd231ea08774&type=album' />
-            </PhotoPopupOnClick>
+            <img src='https://sun9-80.userapi.com/impg/Icnvqh3rg6RbQzxLKUNGE40dYPCQz6zQKf2DXQ/rOX_FwkzH-E.jpg?size=1280x960&quality=95&sign=37106ba7c1301dac7a9efd231ea08774&type=album'
+                className={s.img}
+            />
             <div className={s.authorizeText}>Authorize please!!!</div>
-            <LoginForm login={login}/>
+            <LoginForm login={login} />
         </div>
     );
 };

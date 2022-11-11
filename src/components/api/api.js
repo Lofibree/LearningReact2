@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-
+// INSTANSES
 const instanseSAMURAI = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -13,15 +13,7 @@ const instanseJSONPLACE = axios.create({
     baseURL: 'https://jsonplaceholder.typicode.com/'
 })
 
-// export const headerAPI = {
-//     setIsAuth() {
-//         return instanseSAMURAI.get('auth/me')
-//         .then(response => {
-//             return response.data
-//         })
-//     }
-// }
-
+// API'S
 export const loginAPI = {
     setIsAuth() {
         return instanseSAMURAI.get('auth/me')

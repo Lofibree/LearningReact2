@@ -8,14 +8,6 @@ import { setFollowThunkCreator, setUnFollowThunkCreator } from '../../redux/user
 const UserItemContainer = (props) => {
 
     const dispatch = useDispatch();
-
-    const usersBank = useSelector(state => state.usersPage.usersBank);
-    const getIsFollowed = () => {
-        let neededUserIndex = usersBank.findIndex(user => user.id === props.id);
-        // debugger;
-        let isFollowed = usersBank[neededUserIndex].followed
-        return isFollowed
-    }
     const followingInProgress = useSelector(state => state.usersPage.followingInProgress);
     
     const setFollow = (id) => {
@@ -30,7 +22,6 @@ const UserItemContainer = (props) => {
             followingInProgress={followingInProgress}
             setFollow={setFollow}
             setUnFollow={setUnFollow}
-            isFollowed={getIsFollowed()}
         />
     );
 };

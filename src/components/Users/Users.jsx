@@ -14,26 +14,22 @@ const Users = (props) => {
     return (
         <div className={s.users}>
             <div className={s.pagesNumberBox}>
-                {pagesArr.map(
-                    (p) => {
-                        if (p <= 10) {
-                            return (
-                                <span
-                                    className={
-                                        props.currentPage === p
-                                            ? s.selectedPage
-                                            : undefined
-                                    }
-                                    onClick={() => {
-                                        props.onPageChanged(p)
-                                    }}
-                                >
-                                    {p}
-                                </span>
-                            )
-                        }
+                {pagesArr.map((p) => {
+                    if (p <= 10) {
+                        return <span
+                            className={
+                                props.currentPage === p
+                                    ? s.selectedPage
+                                    : undefined
+                            }
+                            onClick={() => {
+                                props.onPageChanged(props.pageSize, p)
+                            }}
+                        >
+                            {p}
+                        </span>
                     }
-                )}
+                })}
             </div>
             {props.usersItemsEl}
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PostItem from './Post/PostItem/PostItem';
 import MyPosts from './MyPosts';
 import { getPostsThunkCreator, getOnPagePostsThunkCreator, addNewPostAC } from '../../redux/profileReducer';
@@ -7,60 +7,40 @@ import Preloader from '../common/Preloader/Preloader';
 import { getCurrentPage, getIsFetching, getPosts } from '../../redux/profileSelectors';
 
 
-class MyPoststAJAX extends React.Component {
+const MyPostsContainerEff = (props) => {
 
-  componentDidMount() {
-    this.props.getPostsThunkCreator(this.props.currentPage)
+  useEffect(() => {
+    props.getPostsThunkCreator(props.currentPage)
+  }, [])
+
+  const onPageChanged = (pageNumber) => {
+    props.getOnPagePostsThunkCreator(pageNumber);
   }
 
-  onPageChanged = (pageNumber) => {
-    this.props.getOnPagePostsThunkCreator(pageNumber);
-  }
-
-  render() {
-    return (
-      <>
-        {this.props.isFetching
-          ? <Preloader />
-          : <MyPosts
-            onPageChanged={this.onPageChanged}
-            addNewPostAC={this.props.addNewPostAC}
-            postsEl={this.props.postsEl}
-            currentPage={this.props.currentPage}
-          />
-        }
-      </>
-    )
-  }
-}
+  return (
+    <>
+      {props.isFetching
+        ? <Preloader />
+        : <MyPosts
+          onPageChanged={onPageChanged}
+          addNewPostAC={props.addNewPostAC}
+          postsEl={props.postsEl}
+          currentPage={props.currentPage}
+        />
+      }
+    </>
+  );
+};
 
 
-
-
-// let mapStateToProps = (state) => {
-//   return {
-//     postsEl: state.profilePage.posts
-//       .map(p => <PostItem
-//         id={p.id}
-//         body={p.body}
-//         title={p.title}
-//         index={state.profilePage.posts.indexOf(p)}
-//       />
-//       ),
-//     currentPage: state.profilePage.currentPage,
-//     isFetching: state.profilePage.isFetching
-//   }
-// }
 let mapStateToProps = (state) => {
   return {
-    postsEl: getPosts(state)
-      .map(p => <PostItem
-        id={p.id}
-        body={p.body}
-        title={p.title}
-        index={getPosts(state).indexOf(p)}
-      />
-      ),
+    postsEl: getPosts(state).map(p => <PostItem
+      id={p.id}
+      body={p.body}
+      title={p.title}
+      index={getPosts(state).indexOf(p)}
+    />),
     currentPage: getCurrentPage(state),
     isFetching: getIsFetching(state)
   }
@@ -68,4 +48,4 @@ let mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps,
-  { getPostsThunkCreator, getOnPagePostsThunkCreator, addNewPostAC })(MyPoststAJAX);
+  { getPostsThunkCreator, getOnPagePostsThunkCreator, addNewPostAC })(MyPostsContainerEff);

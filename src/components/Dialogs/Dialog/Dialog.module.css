@@ -1,5 +1,8 @@
 
-
+.dialog {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+}
 .dialogsItems {
     padding: 10px;
     display: flex;
@@ -8,7 +11,7 @@
 }
 
 
-.dialog {
+.dialogHeader {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -19,7 +22,7 @@
     transition: 0.3s ease;
 }
 
-.dialog img {
+.dialogHeader .img {
     width: 50px;
     height: 50px;
     margin-right: 35px;
@@ -27,60 +30,26 @@
     object-fit: cover;
 }
 
-.dialog:active {
+.dialogHeader:active {
     color:aqua;
     background-color: rgb(225, 119, 119);
 }
 
-.dialog:hover {
+.dialogHeader:hover {
     cursor: pointer;
     transition: 0.3s;
 }
 
-
-
-.newMessBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-}
-
-.newMessText {
-    font-size: 20px;
-    background: #516189;
-    color:rgb(208 132 255);
-    padding: 5px;
-    margin: 10px;
-    margin-left: 90px;
-    min-width: 50px;
-    max-width: 200px;
-    min-height: 50px;
-    max-height: 100px;
-    border: 2px rgb(213, 118, 118) solid;
-    border-radius: 10px;
-}
-
-
-.btnMess:hover {
-    cursor: pointer;
-    color: white;
-    transition: 0.2s ease;
-}
-
-
 .arrowBtn {
     font-size: 35px;
-    
+    margin-top: 20px;
 }
 .arrowBtn:hover {
     cursor: pointer;
 }
-/* .button {
-    border-radius: 10px; 
-    padding: 5px;
-    background-color: black;
-    min-width: 50px;
-    color: white;
-} */
+.formLogin {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

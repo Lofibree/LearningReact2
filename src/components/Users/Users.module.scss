@@ -13,6 +13,7 @@
     padding: 5px;
     margin: 2px;
     text-decoration: none;
+    z-index: 0;
     overflow: hidden;
     transition: 0.2s ease;
     word-wrap: break-word;
@@ -37,6 +38,16 @@
     &:hover:before {
         transform: scale(30);
     }
+}
+.item:hover {
+    p {
+        transition: all 0.3s ease-out;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      h3 {
+        transition: all 0.3s ease-out;
+        color: #ffffff;
+      }
 }
 .imgPlusFollow {
     display: flex;
