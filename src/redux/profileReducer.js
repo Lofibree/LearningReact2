@@ -1,15 +1,15 @@
 import { postsAPI } from "../components/api/api";
 
-const ADD_NEW_POST = 'ADD_NEW_POST';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_POSTS = 'SET_POSTS';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const SET_COMMENTS = 'SET_COMMENTS';
-const TOGGLE_IS_FETCHING_COMM = 'TOGGLE_IS_FETCHING_COMM';
-const SET_POST_IMG = 'SET_POST_IMG';
-const SET_PARTICULAR_POST = 'SET_PARTICULAR_POST';
-const TOGGLE_IS_FETCHING_POST = 'TOGGLE_IS_FETCHING_POST';
-const SET_STATUS = 'SET_STATUS';
+const ADD_NEW_POST = 'samurai-network/profilePage/ADD_NEW_POST';
+const SET_CURRENT_PAGE = 'samurai-network/profilePage/SET_CURRENT_PAGE';
+const SET_POSTS = 'samurai-network/profilePage/SET_POSTS';
+const TOGGLE_IS_FETCHING = 'samurai-network/profilePage/TOGGLE_IS_FETCHING';
+const SET_COMMENTS = 'samurai-network/profilePage/SET_COMMENTS';
+const TOGGLE_IS_FETCHING_COMM = 'samurai-network/profilePage/TOGGLE_IS_FETCHING_COMM';
+const SET_POST_IMG = 'samurai-network/profilePage/SET_POST_IMG';
+const SET_PARTICULAR_POST = 'samurai-network/profilePage/SET_PARTICULAR_POST';
+const TOGGLE_IS_FETCHING_POST = 'samurai-network/profilePage/TOGGLE_IS_FETCHING_POST';
+const SET_STATUS = 'samurai-network/profilePage/SET_STATUS';
 
 
 let initialState = {
@@ -118,65 +118,45 @@ export const addNewPostAC = (newPostBody, newPostAuthor) => ({ type: ADD_NEW_POS
 
 
 
-export const getPostsThunkCreator = (currentPage) => {
-    return (dispatch) => {
-        dispatch(setIsFetching(true))
-    postsAPI.setPosts(currentPage)
-      .then(data => {
-        dispatch(setIsFetching(false))
-        dispatch(setPosts(data))
-      })
+export const getPostsThunkCreator = (currentPage) => async (dispatch) => {
+    dispatch(setIsFetching(true))
+    let setPostsPromise = await postsAPI.setPosts(currentPage);
+    dispatch(setIsFetching(false))
+    dispatch(setPosts(setPostsPromise))
+}
+
+export const getOnPagePostsThunkCreator = (pageNumber) => async (dispatch) => {
+    dispatch(setIsFetching(true))
+    let setOnPagePosts = await postsAPI.setOnPagePosts(pageNumber);
+    dispatch(setIsFetching(false));
+    dispatch(setCurrentPage(pageNumber));
+    dispatch(setPosts(setOnPagePosts));
+}
+export const getParticularPostThunkCreator = (id) => async (dispatch) => {
+    dispatch(setIsFetchingPostAC(true))
+    let setParticularPostPromise = await postsAPI.setParticularPost(id);
+    dispatch(setIsFetchingPostAC(false));
+    dispatch(setParticularPostAC(setParticularPostPromise));
+}
+
+export const getCommentsThunkCreator = (id) => async (dispatch) => {
+    dispatch(setIsFetchingCommAC(true));
+    let setCommentsPromise = await postsAPI.setComments(id);
+    dispatch(setIsFetchingCommAC(false));
+    dispatch(setCommentsAC(setCommentsPromise))
+}
+export const getStatusThunkCreator = (id) => async (dispatch) => {
+    let getStatusPromise = await postsAPI.getStatus(id);
+    dispatch(setStatusAC(getStatusPromise))
+}
+
+export const updateStatusThunkCreator = (status) => async (dispatch) => {
+    let updateStatusPromise = await postsAPI.updateStatus(status)
+    if (updateStatusPromise.resultCode === 0) {
+        dispatch(setStatusAC(status));
     }
 }
-export const getOnPagePostsThunkCreator = (pageNumber) => {
-    return (dispatch) => {
-        dispatch(setIsFetching(true))
-        postsAPI.setOnPagePosts(pageNumber)
-          .then(data => {
-            dispatch(setIsFetching(false));
-            dispatch(setCurrentPage(pageNumber));
-            dispatch(setPosts(data));
-          })
-    }
-}
-export const getParticularPostThunkCreator = (id) => {
-    return (dispatch) => {
-        dispatch(setIsFetchingPostAC(true))
-        postsAPI.setParticularPost(id)
-            .then(data => {
-                dispatch(setIsFetchingPostAC(false));
-                dispatch(setParticularPostAC(data));
-            })
-    }
-}
-export const getCommentsThunkCreator = (id) => {
-    return (dispatch) => {
-        dispatch(setIsFetchingCommAC(true));
-        postsAPI.setComments(id)  
-            .then(data => {
-                dispatch(setIsFetchingCommAC(false));
-                dispatch(setCommentsAC(data))
-            })
-    }
-}
-export const getStatusThunkCreator = (id) => {
-    return (dispatch) => {
-        postsAPI.getStatus(id)
-            .then(data => {
-                dispatch(setStatusAC(data));
-            })
-    }
-}
-export const updateStatusThunkCreator = (status) => {
-    return (dispatch) => {
-        postsAPI.updateStatus(status)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setStatusAC(status));
-                }
-            })
-    }
-}
+
 
 
 export default profileReducer; 

@@ -2,6 +2,7 @@ import React from "react";
 import { compose } from "redux";
 import {withFormControls} from '../../../hoc/withFormControls';
 import s from './FormsControls.module.css'
+import { Field } from 'react-final-form'
 
 const TextAreaDef = ({input, meta, ...props}) => {
     return (
@@ -20,6 +21,18 @@ export const Button = ({input, meta, ...props}) => {
     )
 }
 
+
+export const CreateField = (name, type, placeholder, validate, component) => {
+    return (
+        <Field
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            validate={validate}
+            component={component}
+        />
+    )
+}
 
 export const TextArea = compose(
     withFormControls

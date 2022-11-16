@@ -8,6 +8,7 @@ import thunkMiddleware from 'redux-thunk'
 // import { reducer as formReducer } from 'react-final-form';
 // import reducer from 'redux-final-form';
 import appReduser from "./appReducer";
+import userPhotosReducer from "./userPhotosReducer";
 
 
 let reducers = combineReducers({
@@ -17,7 +18,8 @@ let reducers = combineReducers({
     navBar: navBarReducer,
     auth: authReducer,
     // form: formReducer,
-    app: appReduser
+    app: appReduser,
+    userPhotos: userPhotosReducer
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

@@ -14,10 +14,10 @@ const PhotoPopup = (props) => {
                 onClick={e => e.stopPropagation()}
             >
                 <div className={s.bgColor}>
-                    <PhotoHover id={props.id} name={props.name} photo={props.photo}>
+                    <PhotoHover id={props.id} name={props.name}>
                         <img src=
                             {
-                                props.src && props.src.indexOf('https') !== -1
+                                props.src && props.src.indexOf('picsum') !== -1
                                     ? `https://picsum.photos/seed/${props.id}/700/560`
                                     : props.src
                             }

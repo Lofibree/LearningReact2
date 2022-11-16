@@ -1,11 +1,11 @@
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESS_TEXT = 'UPDATE-NEW-MESS-TEXT';
-const DELETE_MESS = 'DELETE-MESS';
-const UPDATE_EDIT_MESS_TEXT = 'UPDATE-EDIT-MESS-TEXT';
-const UPDATE_EDIT_MESS_INIT = 'UPDATE-EDIT-MESS-INIT';
-const COMPLETE_MESS_EDIT = 'COMPLETE-MESS-EDIT';
-const ADD_DIALOG = 'ADD-DIALOG';
-const UPDATE_ADD_DIALOG_TEXT ='UPDATE-ADD-DIALOG-TEXT';
+const ADD_MESSAGE = 'samurai-network/messagePage/ADD-MESSAGE';
+const UPDATE_NEW_MESS_TEXT = 'samurai-network/messagePage/UPDATE-NEW-MESS-TEXT';
+const DELETE_MESS = 'samurai-network/messagePage/DELETE-MESS';
+const UPDATE_EDIT_MESS_TEXT = 'samurai-network/messagePage/UPDATE-EDIT-MESS-TEXT';
+const UPDATE_EDIT_MESS_INIT = 'samurai-network/messagePage/UPDATE-EDIT-MESS-INIT';
+const COMPLETE_MESS_EDIT = 'samurai-network/messagePage/COMPLETE-MESS-EDIT';
+const ADD_DIALOG = 'samurai-network/messagePage/ADD-DIALOG';
+const UPDATE_ADD_DIALOG_TEXT ='samurai-network/messagePage/UPDATE-ADD-DIALOG-TEXT';
 
 
 
@@ -35,66 +35,31 @@ let initialState = {
 
 const messagesReducer = (state = initialState, action) => {
 
-// debugger;
-// debugger;
-
     switch (action.type) {
         case ADD_MESSAGE: {
             let newMess = {
                 id: action.id + 1,
                 message: action.newMessageBody,
-                // time: action.timeMess,  // TIME MANAGEMENT
                 ownerDialog: state.dialogs[action.id].name
             }
             return {
                 ...state,
                 messagesBank: [...state.messagesBank, newMess],
-                // newMessText: ''
             };
         }
-        // case UPDATE_NEW_MESS_TEXT: {
-        //     return {
-        //         ...state,
-        //         newMessText: action.newText
-        //     };
-        // }
         case DELETE_MESS: {
-            let stateCopy = {...state};
-            stateCopy.messagesBank = [...state.messagesBank];
-            stateCopy.messagesBank[action.index] = {...state.messagesBank[action.index]}; // ВАЩЕ ХЗ, УДАЛЯЕТ ЛИ SPLICE ОБЪЕКТ ИЛИ ССЫЛКУ НА ОБЪЕКТ
-            stateCopy.messagesBank.splice(action.index, 1);
+            let stateCopy = {
+                ...state,
+                messagesBank: [...state.messagesBank]
+            };
+            let neededIndex = stateCopy.messagesBank.findIndex(el => el.id === action.id)
+            stateCopy.messagesBank[neededIndex] = {...state.messagesBank[neededIndex]}; // ВАЩЕ ХЗ, УДАЛЯЕТ ЛИ SPLICE ОБЪЕКТ ИЛИ ССЫЛКУ НА ОБЪЕКТ
+            stateCopy.messagesBank.splice(neededIndex, 1);
             return stateCopy;
         }
-        // case UPDATE_EDIT_MESS_TEXT: {
-        //     // debugger;
-
-        //     let stateCopy = {...state};
-        //     stateCopy.messagesBank = [...state.messagesBank];
-        //     stateCopy.messagesBank[action.index] = {...state.messagesBank[action.index]};
-        //     stateCopy.messagesBank[action.index].editMessText = action.newText;
-        //     return stateCopy;
-        // }
-        // case UPDATE_EDIT_MESS_INIT: {
-        //     // debugger;
-            
-        //     let stateCopy = {...state};
-        //     stateCopy.messagesBank = [...state.messagesBank];
-        //     stateCopy.messagesBank[action.index] = {...state.messagesBank[action.index]};
-        //     stateCopy.messagesBank[action.index].editMessText = stateCopy.messagesBank[action.index].message;
-        //     return stateCopy;
-        // }
-        // case COMPLETE_MESS_EDIT: {
-        //     // debugger;
-        //     let stateCopy = {...state};
-        //     stateCopy.messagesBank = [...state.messagesBank];
-        //     stateCopy.messagesBank[action.index] = {...state.messagesBank[action.index]};
-        //     stateCopy.messagesBank[action.index].message = stateCopy.messagesBank[action.index].editMessText;
-        //     return stateCopy;
-        // }
         case ADD_DIALOG: {
             let stateCopy = {...state};
             stateCopy.dialogs = [...state.dialogs];
-            // stateCopy.dialogs = [...state.dialogs].map(function (d) {return {...d}});  // СОМНИТЕЛЬНО, ВЕДЬ Я ЖЕ НЕ ИЗМЕНЯЮ, А ЧИТАЮ
             let isDialogExist = stateCopy.dialogs.some(d => d.name === action.newDialogBody);
             if (isDialogExist === false) {
                 let newDialog = {
@@ -107,12 +72,6 @@ const messagesReducer = (state = initialState, action) => {
             }
             return stateCopy;
         }
-        // case UPDATE_ADD_DIALOG_TEXT: {
-        //     return {
-        //         ...state,
-        //         newDialogText: action.newText
-        //     };
-        // }
         default:
             return state;
 
@@ -126,7 +85,7 @@ export const onMessChangeAC = (text) => ({ type: UPDATE_NEW_MESS_TEXT, newText: 
 export const editMessAC = (index) => ({ type: UPDATE_EDIT_MESS_INIT, index: index });
 export const onEditChangeMessAC = (text, index) => ({ type: UPDATE_EDIT_MESS_TEXT, newText: text, index: index });
 export const completeEditMessAC = (index) => ({ type: COMPLETE_MESS_EDIT, index: index });
-export const deleteMessAC = (index) => ({ type: DELETE_MESS, index: index });
+export const deleteMessAC = (id) => ({ type: DELETE_MESS, id });
 export const addDialogAC = (newDialogBody) => ({ type: ADD_DIALOG, newDialogBody });
 export const onAddDialogChangeAC = (text) => ({ type: UPDATE_ADD_DIALOG_TEXT, newText: text })
 

@@ -31,10 +31,12 @@ export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS})
 
 export const initializeApp = () => {
     return (dispatch) => {
+        // debugger
         let promise = dispatch(getIsAuthThunkCreator())
         Promise.all([promise]).then(() => {
             dispatch(initializedSuccess())
         })
+        // debugger
     } 
 }
 

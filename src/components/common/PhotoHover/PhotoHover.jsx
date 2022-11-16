@@ -31,9 +31,9 @@ const PhotoHover = (props) => {
             <div className={s.imgCommentsBox}>
                 <div className={s.authorCard}>
                     <img src=
-                        {props.photo !== null
-                            ? props.photo
-                            : `https://picsum.photos/seed/${props.id}/300/200`
+                        {!props.photo
+                            ? `https://picsum.photos/seed/${props.id}/300/200`
+                            : props.photo || props.src
                         }
                         className={s.img}
                         />

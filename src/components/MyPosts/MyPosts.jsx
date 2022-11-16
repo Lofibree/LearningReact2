@@ -4,6 +4,8 @@ import { Form, Field } from 'react-final-form'
 import { Button, Input, TextArea } from '../common/FormsControls/FormsControls';
 import { connect } from 'react-redux';
 import {addNewPostAC} from './../../redux/profileReducer'
+import { required, minFieldLength, composeValidators } from '../Utils/Validators/validators';
+import { CreateField } from '../common/FormsControls/FormsControls';
 
 
 const MyPosts = (props) => {
@@ -41,16 +43,8 @@ const MyPosts = (props) => {
 
 
 
+
 const MyPostsForm = (props) => {
-
-  const required = value => (value ? undefined : 'Required');
-  const minFieldLength = min => value => value.length >= min ? undefined : 'Too short'
-  const composeValidators = (...validators) => {
-      return (value) => (
-          validators.reduce((error, validator) => error || validator(value), undefined)
-      )
-  }
-
   return (
       <Form
           onSubmit={(values) => {
@@ -60,20 +54,8 @@ const MyPostsForm = (props) => {
               const { handleSubmit } = renderProps;
               return (
                   <form onSubmit={handleSubmit} className={s.formLogin}>
-                      <Field
-                          name='title'
-                          type='text'
-                          placeholder='title'
-                          validate={composeValidators(required, minFieldLength(5))}
-                          component={TextArea}
-                      />
-                      <Field
-                          name='postBody'
-                          type='text'
-                          validate={composeValidators(required, minFieldLength(5))}
-                          placeholder='postBody'
-                          component={TextArea}
-                      />
+                      {CreateField('title', 'text', 'title', composeValidators(required, minFieldLength(5)), TextArea)}
+                      {CreateField('postBody', 'text', 'postBody', composeValidators(required, minFieldLength(5)), TextArea)}
                       <Button type='submit'>Post</Button>
                   </form>
               )

@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+.photos {
+    min-height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+}
+.id {
+    display: flex;
+    justify-content:center;
+    font-size: 25px;  
+}
+.arrovBtnBox {
+    display: flex;
+    justify-content:center;
+}
+.arrowBtn {
+    font-size: 35px;
+    margin: 0 auto;
+}
+.arrowBtn:hover {
+    cursor: pointer;
+}
+.arrowBtn a{
+    text-decoration:none;
+    color: white;
+}
+.infoWrapper {
+    display: flex;
+    justify-content: center;
+}
+.name {
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+}
+.additionalInfo {
+    font-size: 15px;
+    color: rgb(76, 76, 76);
+    font-weight: 200;
+}
+.lookingForAJob {
+    margin: 5px auto;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+
+}

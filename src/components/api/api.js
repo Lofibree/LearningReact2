@@ -12,6 +12,20 @@ const instanseJSONPLACE = axios.create({
     withCredentials: true,
     baseURL: 'https://jsonplaceholder.typicode.com/'
 })
+const instanseCAT = axios.create({
+    baseURL: 'https://api.thecatapi.com/v1/images/',
+    headers: {
+        "Access-Control-Allow-Origin": "http://localhost:3000"
+    }
+})
+const instanseVK = axios.create({
+    withCredentials: true,
+    baseURL: 'https://api.vk.com/method/friends.search?',
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        'Content-Type': 'application/json',
+    }
+})
 
 // API'S
 export const loginAPI = {
@@ -118,3 +132,29 @@ export const usersAPI = {
         })
     }
 } 
+export const photosAPI = {
+    getUserPhotos() {
+        return instanseCAT.get('search?limit=10')
+        .then(response => {
+            // debugger
+            return response.data
+        })
+    }
+}
+
+export const vkAPI = {
+    getFriends() {
+        return instanseVK.get('count=5&access_token=vk1.a.Bwcp5TJRLKFB4TjpyLX7m7kvnVqleH-cA39TP4hBYpeHYYgfHNHPUNk69eiKG72k9Hoa3sWaUT_bqxIlMI35KXKvos-wtEZtyQ52D8G8_rJBpOKKrnbQ2a4n1jDA55Pphp75zG0Gkn4OSdtrbCQwTyIVlSVftK_xHaFqj7YhnvlZGf2gTllvKZBXIAD7F7Qm&v=5.52')
+        .then(response => {
+           return response.data
+        })
+    }
+}
+
+
+// vk token
+
+// vk1.a.Bwcp5TJRLKFB4TjpyLX7m7kvnVqleH-cA39TP4hBYpeHYYgfHNHPUNk69eiKG72k9Hoa3sWaUT_bqxIlMI35KXKvos-wtEZtyQ52D8G8_rJBpOKKrnbQ2a4n1jDA55Pphp75zG0Gkn4OSdtrbCQwTyIVlSVftK_xHaFqj7YhnvlZGf2gTllvKZBXIAD7F7Qm
+
+// https://oauth.vk.com/blank.html#access_token=vk1.a.Bwcp5TJRLKFB4TjpyLX7m7kvnVqleH-cA39TP4hBYpeHYYgfHNHPUNk69eiKG72k9Hoa3sWaUT_bqxIlMI35KXKvos-wtEZtyQ52D8G8_rJBpOKKrnbQ2a4n1jDA55Pphp75zG0Gkn4OSdtrbCQwTyIVlSVftK_xHaFqj7YhnvlZGf2gTllvKZBXIAD7F7Qm&expires_in=86400&user_id=241946514
+// https://oauth.vk.com/authorize?client_id=51474643&display=page&redirect_uri=&scope=friends,messages&response_type=token&v=5.52

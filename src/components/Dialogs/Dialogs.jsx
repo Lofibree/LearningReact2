@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import s from './Dialogs.module.css';
 import { Form, Field } from 'react-final-form'
 import { Input, Button } from '../common/FormsControls/FormsControls';
+import { required, minFieldLength, composeValidators } from '../Utils/Validators/validators';
+import { CreateField } from '../common/FormsControls/FormsControls';
 
 
 const Dialogs = (props) => {
@@ -23,14 +25,6 @@ const Dialogs = (props) => {
 
 const NewDialogForm = (props) => {
 
-    const required = value => (value ? undefined : 'Required');
-    const minFieldLength = min => value => value.length >= min ? undefined : 'Too short'
-    const composeValidators = (...validators) => {
-        return (value) => (
-            validators.reduce((error, validator) => error || validator(value), undefined)
-        )
-    }
-
     return (
         <Form
             onSubmit={(values) => {
@@ -40,13 +34,7 @@ const NewDialogForm = (props) => {
                 const { handleSubmit } = renderProps;
                 return (
                     <form onSubmit={handleSubmit} className={s.formLogin}>
-                        <Field
-                            name='name'
-                            type='name'
-                            placeholder='name'
-                            validate={composeValidators(required, minFieldLength(5))}
-                            component={Input}
-                        />
+                        {CreateField('name', 'name', 'name', composeValidators(required, minFieldLength(5)), Input)}
                         <Button type='submit'>Create</Button>
                     </form>
                 )

@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './HeadItem.module.css';
+import {RiLogoutBoxRLine} from 'react-icons/ri'
 
 const HeadItem = (props) => {
     return (
@@ -18,7 +19,7 @@ const HeadItem = (props) => {
                     {props.id}
                 </div>
             </div>
-            <button onClick={props.logoutThunkCreator} className={s.logoutBtn}>Logout</button>
+            <RiLogoutBoxRLine onClick={props.logoutThunkCreator} className={s.logoutBtn} title={'logout'}/>
         </div>
     );
 };

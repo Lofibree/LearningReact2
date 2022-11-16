@@ -1,21 +1,21 @@
 import { usersAPI } from "../components/api/api";
 import { postsAPI } from "../components/api/api";
 
-const SET_FOLLOW_UNFOLLOW = 'SET_FOLLOW_UNFOLLOW';
-const SET_USERS = 'SET-USERS';
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
-const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const SET_USER = 'SET_USER';
-const SET_USER_IMG_CARD = 'SET_USER_IMG_CARD';
-const TOGGLE_IS_FETCHING_USER = 'TOGGLE_IS_FETCHING_USER';
-const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
-const SET_USER_STATUS = 'SET_USER_STATUS';
+const SET_FOLLOW_UNFOLLOW = 'samurai-network/usersPage/SET_FOLLOW_UNFOLLOW';
+const SET_USERS = 'samurai-network/usersPage/SET-USERS';
+const SET_CURRENT_PAGE = 'samurai-network/usersPage/SET-CURRENT-PAGE';
+const SET_TOTAL_USERS_COUNT = 'samurai-network/usersPage/SET-TOTAL-USERS-COUNT';
+const TOGGLE_IS_FETCHING = 'samurai-network/usersPage/TOGGLE_IS_FETCHING';
+const SET_USER = 'samurai-network/usersPage/SET_USER';
+const SET_USER_IMG_CARD = 'samurai-network/usersPage/SET_USER_IMG_CARD';
+const TOGGLE_IS_FETCHING_USER = 'samurai-network/usersPage/TOGGLE_IS_FETCHING_USER';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'samurai-network/usersPage/TOGGLE_IS_FOLLOWING_PROGRESS';
+const SET_USER_STATUS = 'samurai-network/usersPage/SET_USER_STATUS';
 
 
 let initialState = {
-    usersBank: [], 
-    user: {photos: {small: null, large: null}},
+    usersBank: [],
+    user: { photos: { small: null, large: null } },
     userStatus: 'someStatus',
     pageSize: 20,
     totalUsersCount: 0,
@@ -26,7 +26,7 @@ let initialState = {
     status: 'no status',
     followingInProgress: []
 }
- 
+
 
 
 const usersReduser = (state = initialState, action) => {
@@ -37,13 +37,13 @@ const usersReduser = (state = initialState, action) => {
                 usersBank: [...state.usersBank]
             }
             let neededUserIndex = stateCopy.usersBank.findIndex(user => user.id === action.id)
-            stateCopy.usersBank[neededUserIndex] = {...state.usersBank[neededUserIndex]}
+            stateCopy.usersBank[neededUserIndex] = { ...state.usersBank[neededUserIndex] }
             stateCopy.usersBank[neededUserIndex].followed = action.isFollowedResault
             return stateCopy
         }
         case SET_USERS: {
-            return { 
-                ...state, 
+            return {
+                ...state,
                 usersBank: action.newUsers
             }
         }
@@ -86,9 +86,9 @@ const usersReduser = (state = initialState, action) => {
         case TOGGLE_IS_FOLLOWING_PROGRESS: {
             return {
                 ...state,
-                followingInProgress: action.followingInProgress 
-                ? [...state.followingInProgress, action.id]
-                : state.followingInProgress.filter(id => id !== action.id)
+                followingInProgress: action.followingInProgress
+                    ? [...state.followingInProgress, action.id]
+                    : state.followingInProgress.filter(id => id !== action.id)
             }
         }
         case SET_USER_STATUS: {
@@ -107,7 +107,7 @@ const usersReduser = (state = initialState, action) => {
 
 export const setFollowUnFollowAC = (isFollowedResault, id) => ({ type: SET_FOLLOW_UNFOLLOW, isFollowedResault, id });
 export const setUsersAC = (newUsers) => ({ type: SET_USERS, newUsers: newUsers });
-export const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage})
+export const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
 export const setTotalUsersCountAC = (totalCount) => ({ type: SET_TOTAL_USERS_COUNT, totalCount })
 export const setIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const setUserAC = (user) => ({ type: SET_USER, user });
@@ -116,70 +116,51 @@ export const toggleFollowingProgressAC = (followingInProgress, id) => ({ type: T
 export const setUserStatusAC = (status) => ({ type: SET_USER_STATUS, status })
 
 
-export const getUsersThunkCreator = (pageSize, currentPage) => {
-    return (dispatch) => {
-        
-        dispatch(setIsFetchingAC(true));
-        usersAPI.setUsers(pageSize, currentPage)
-            .then(data => {
-                dispatch(setIsFetchingAC(false));
-                dispatch(setUsersAC(data.items));
-                dispatch(setTotalUsersCountAC(data.totalCount));
-            })
-    }
+export const getUsersThunkCreator = (pageSize, currentPage) => async (dispatch) => {
+    dispatch(setIsFetchingAC(true));
+    let setUsersPromise = await usersAPI.setUsers(pageSize, currentPage);
+    dispatch(setIsFetchingAC(false));
+    dispatch(setUsersAC(setUsersPromise.items));
+    dispatch(setTotalUsersCountAC(setUsersPromise.totalCount));
 }
-export const getOnPageChangedUsersThunkCreator = (pageSize, pageNumber) => {
-    return (dispatch) => {
-        dispatch(setIsFetchingAC(true));
-        dispatch(setCurrentPageAC(pageNumber));
-        usersAPI.onPageSetUsers(pageSize, pageNumber)
-            .then(data => {
-                dispatch(setIsFetchingAC(false));
-                dispatch(setUsersAC(data.items));
-            })
-    }
+
+export const getOnPageChangedUsersThunkCreator = (pageSize, pageNumber) => async (dispatch) => {
+    dispatch(setIsFetchingAC(true));
+    dispatch(setCurrentPageAC(pageNumber));
+    let onPageSetUsersPromise = await usersAPI.onPageSetUsers(pageSize, pageNumber);
+    dispatch(setIsFetchingAC(false));
+    dispatch(setUsersAC(onPageSetUsersPromise.items));
 }
-export const setFollowThunkCreator = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleFollowingProgressAC(true, userId));
-        usersAPI.setFollow(userId).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setFollowUnFollowAC(true, userId))
-            }
-            dispatch(toggleFollowingProgressAC(false, userId));
-        })
+const followUnfollowFlow = async (dispatch, userId, resault, apiMethod) => {
+    dispatch(toggleFollowingProgressAC(true, userId));
+    let setFollowPromise = await apiMethod(userId);
+    if (setFollowPromise.resultCode === 0) {
+        dispatch(setFollowUnFollowAC(resault, userId))
     }
+    dispatch(toggleFollowingProgressAC(false, userId));
 }
-export const setUnFollowThunkCreator = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleFollowingProgressAC(true, userId));
-        usersAPI.setUnFollow(userId).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setFollowUnFollowAC(false, userId))
-            }
-            dispatch(toggleFollowingProgressAC(false, userId));
-        })
-    }
+export const setFollowThunkCreator = (userId) => async (dispatch) => {
+    let apiMethod = usersAPI.setFollow.bind(usersAPI);
+    followUnfollowFlow(dispatch, userId, true, apiMethod)
 }
-export const getUserThunkCreator = (userId) => {
-    return (dispatch) => {
-        dispatch(setIsFetchingUserAC(true))
-        usersAPI.setUserProfile(userId)
-            .then(data => {
-                dispatch(setIsFetchingUserAC(false))
-                dispatch(setUserAC(data));
-            })
-    }
+export const setUnFollowThunkCreator = (userId) => async (dispatch) => {
+    let apiMethod = usersAPI.setUnFollow.bind(usersAPI);
+    followUnfollowFlow(dispatch, userId, false, apiMethod)
 }
-export const getUserStatusThunkCreator = (id) => {
-    return (dispatch) => {
-        postsAPI.getStatus(id)
-            .then(data => {
-                
-                dispatch(setUserStatusAC(data));
-            })
-    }
+
+export const getUserThunkCreator = (userId) => async (dispatch) => {
+    debugger;
+    dispatch(setIsFetchingUserAC(true))
+    let setUserProfilePromise = await usersAPI.setUserProfile(userId);
+    dispatch(setIsFetchingUserAC(false))
+    dispatch(setUserAC(setUserProfilePromise));
 }
+ 
+export const getUserStatusThunkCreator = (id) => async (dispatch) => {
+    let getStatusPromise = await postsAPI.getStatus(id);
+    dispatch(setUserStatusAC(getStatusPromise));
+}
+
 
 
 

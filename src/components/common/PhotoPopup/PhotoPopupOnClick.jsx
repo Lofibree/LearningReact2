@@ -15,7 +15,7 @@ const PhotoPopupOnClick = (props) => {
                 popupActive={popupActive}
                 setPopupActive={setPopupActive}
                 src={props.children.props.src}
-                id={props.id}
+                // id={props.id}
                 {...props}
             /> 
         </div>

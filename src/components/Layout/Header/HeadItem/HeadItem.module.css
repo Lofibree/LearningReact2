@@ -33,7 +33,9 @@
     margin: 5px;
 }
 .itemLogin .logoutBtn {
-    height: 20px;
+    /* height: 20px; */
+    font-size: 25px;
+    color: white;
     transition: 0.2s ease;
 }
 .itemLogin .logoutBtn:hover {

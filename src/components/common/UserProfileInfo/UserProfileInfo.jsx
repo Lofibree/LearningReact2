@@ -6,25 +6,13 @@ import s from './UserProfileInfo.module.css';
 import PhotoPopupOnClick from '../PhotoPopup/PhotoPopupOnClick';
 import fakePhoto from '../../../accets/images/default-img.img'
 import { BiImageAlt } from 'react-icons/bi'
+import { NavLink } from 'react-router-dom';
+import {ImEnter} from 'react-icons/im'
 
 
 const UserProfileInfo = (props) => {
 
     const myId = useSelector(state => state.auth.id);
-
-    const loadImg = (url) => new Promise((resolve, reject) => {
-        const img = new Image();
-        img.src = url;
-        resolve();
-    })
-
-    const loadImgCallBack = () => {
-        loadImg('https://picsum.photos/200').then(img => {
-            debugger;
-            console.log(img)
-        })
-    }
-
 
     return (
         <> 
@@ -39,8 +27,6 @@ const UserProfileInfo = (props) => {
                             className={s.userImgCard}
                         />
                     </PhotoPopupOnClick>
-                    {/* {() => loadImgCallBack} */}
-                    {/* <button onClick={loadImgCallBack}>fgsfdgfdgg</button> */}
                 </div>
                 <div>
                     <div className={s.profileInfo}>
@@ -100,6 +86,10 @@ const UserProfileInfo = (props) => {
                                     className={s.img}
                                 />
                             </PhotoPopupOnClick>
+                        </div>
+                        <div className={s.morePhotos}>
+                            <span>More Photos</span>
+                            <NavLink to={`/photos/${props.id || props.userId}`}><ImEnter className={s.imEnter}/></NavLink>
                         </div>
                     </div>
                 </div>

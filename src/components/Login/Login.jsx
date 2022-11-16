@@ -5,19 +5,20 @@ import { loginThunkCreator } from '../../redux/authReducer';
 import s from './Login.module.css'
 import {Button, Input} from './../common/FormsControls/FormsControls'
 import { connect } from 'react-redux';
+import { required, minFieldLength, composeValidators } from '../Utils/Validators/validators';
+import { CreateField } from './../common/FormsControls/FormsControls';
+
 
 const Login = (props) => {
 
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     const login = (formData) => {
         props.loginThunkCreator(formData)
     }
-
     if (props.isAuth) {
         navigate('/profile')
     }
-
     return (
         <div className={s.authorizeWrapper}>
             <img src='https://sun9-80.userapi.com/impg/Icnvqh3rg6RbQzxLKUNGE40dYPCQz6zQKf2DXQ/rOX_FwkzH-E.jpg?size=1280x960&quality=95&sign=37106ba7c1301dac7a9efd231ea08774&type=album'
@@ -29,17 +30,8 @@ const Login = (props) => {
     );
 };
 
-
+ 
 const LoginForm = (props) => {
-
-    const required = value => (value ? undefined : 'Required');
-    const minFieldLength = min => value => value.length >= min ? undefined : 'Too short'
-    const composeValidators = (...validators) => {
-        return (value) => (
-            validators.reduce((error, validator) => error || validator(value), undefined)
-        )
-    }
-
     return (
         <Form
             onSubmit={(values) => {
@@ -49,20 +41,8 @@ const LoginForm = (props) => {
                 const { handleSubmit } = renderProps;
                 return (
                     <form onSubmit={handleSubmit} className={s.formLogin}>
-                        <Field
-                            name='email'
-                            type='email'
-                            placeholder='email'
-                            validate={composeValidators(required, minFieldLength(5))}
-                            component={Input}
-                        />
-                        <Field
-                            name='password'
-                            type='password'
-                            validate={composeValidators(required, minFieldLength(5))}
-                            placeholder='password'
-                            component={Input}
-                        />
+                        {CreateField('email', 'email', 'email', composeValidators(required, minFieldLength(5)), Input)}
+                        {CreateField('password', 'password', 'password', composeValidators(required, minFieldLength(5)), Input)}
                         <Button type='submit'>Login</Button>
                     </form>
                 )

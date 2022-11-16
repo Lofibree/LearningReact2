@@ -1,10 +1,9 @@
-// import { stopSubmit } from "redux-form";
 import { loginAPI, usersAPI } from "../components/api/api";
 
 
-const SET_USER_DATA = 'SET_USER_DATA';
-const SET_MY_PROFILE = 'SET_MY_PROFILE';
-const LOGIN = 'LOGIN';
+const SET_USER_DATA = 'samurai-network/auth/SET_USER_DATA';
+const SET_MY_PROFILE = 'samurai-network/auth/SET_MY_PROFILE';
+const LOGIN = 'samurai-network/auth/LOGIN';
 
 let initialState = {
     id: null, 
@@ -51,45 +50,32 @@ export const setMyProfileAC  = (lookingForAJob, photos) => ({ type: SET_MY_PROFI
 export const loginAC  = (email, password) => ({ type: LOGIN, loginData: {email, password} });
 
 
-export const getIsAuthThunkCreator = () => {
-    return (dispatch) => {
-        return loginAPI.setIsAuth().then(data => {
-            let {id, email, login, isAuth} = data.data; 
-            if (data.resultCode === 0) {
-                dispatch(setAuthUserData(id, email, login, true));
-            }  
-            console.log('me');
-            return id;  
-        }).then(id => {
-            // debugger;
-            console.log('profile');
-            usersAPI.setUserProfile(id).then(data => {
-                let { lookingForAJob, photos } = data;
-                dispatch(setMyProfileAC(lookingForAJob, photos));
-            })
-        })
+export const getIsAuthThunkCreator = () => async (dispatch) => {
+    // debugger
+    let dataPromise = await loginAPI.setIsAuth();
+    let { id, email, login, isAuth } = dataPromise.data;
+    if (dataPromise.resultCode === 0) {
+        dispatch(setAuthUserData(id, email, login, true));
+        let userProfilePromise = await usersAPI.setUserProfile(id);
+        let { lookingForAJob, photos } = userProfilePromise;
+        dispatch(setMyProfileAC(lookingForAJob, photos));
     }
 }
-export const loginThunkCreator = (formData) => (dispatch) => {
-    let {email, password} = formData;
-    loginAPI.login(email, password).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(loginAC(email, password))
-        }
-    })
-    .then(() => {
+export const loginThunkCreator = (formData) => async (dispatch) => {
+    let { email, password } = formData;
+    let loginDataPromise = await loginAPI.login(email, password);
+    if (loginDataPromise.resultCode === 0) {
+        dispatch(loginAC(email, password));
         dispatch(getIsAuthThunkCreator())
-    }) 
+    }
 }
-export const logoutThunkCreator = () => {
-    return (dispatch) => {
-        loginAPI.logout().then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setAuthUserData(null, null, null, false));
-            }
-        })
-    } 
-} 
+export const logoutThunkCreator = () => async (dispatch) => {
+    let logoutDataPromise = await loginAPI.logout();
+    if (logoutDataPromise.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false));
+    }
+}
+ 
 
 
 export default authReduser; 

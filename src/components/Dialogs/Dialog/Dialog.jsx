@@ -4,6 +4,8 @@ import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom';
 import { Input, Button } from '../../common/FormsControls/FormsControls';
 import { Form, Field } from 'react-final-form'
+import { required, minFieldLength, composeValidators } from '../../Utils/Validators/validators';
+import { CreateField } from '../../common/FormsControls/FormsControls';
 
 
 
@@ -43,14 +45,6 @@ const Dialog = (props) => {
 
 const NewMessageForm = (props) => {
 
-    const required = value => (value ? undefined : 'Required');
-    const minFieldLength = min => value => value.length >= min ? undefined : 'Too short'
-    const composeValidators = (...validators) => {
-        return (value) => (
-            validators.reduce((error, validator) => error || validator(value), undefined)
-        )
-    }
-
     return (
         <Form
             onSubmit={(values) => {
@@ -60,13 +54,7 @@ const NewMessageForm = (props) => {
                 const { handleSubmit } = renderProps;
                 return (
                     <form onSubmit={handleSubmit} className={s.formLogin}>
-                        <Field
-                            name='messageBody'
-                            type='messageBody'
-                            placeholder='messageBody'
-                            validate={composeValidators(required, minFieldLength(5))}
-                            component={Input}
-                        />
+                        {CreateField('messageBody', 'text', 'messageBody', composeValidators(required, minFieldLength(5)), Input)}
                         <Button type='submit'>Send</Button>
                     </form>
                 )
