@@ -2,7 +2,7 @@ import React from 'react';
 import s from './UserPhotos.module.css'
 import { useNavigate } from 'react-router-dom';
 import {AiOutlineArrowLeft} from 'react-icons/ai'
-import { vkAPI } from '../api/api';
+import { breakingBadAPI, vkAPI } from '../api/api';
 
 const UserPhotos = (props) => {
     
@@ -17,7 +17,6 @@ const UserPhotos = (props) => {
     return (
         <div>
             <div className={s.id}>ID: {props.id}</div>
-            <button onClick={getFriends}>friends</button>
             <div>
                 <div className={s.name}>{props.user.fullName}</div>
                 <div>

@@ -89,30 +89,6 @@
     cursor: pointer; 
 }
 
-.pagesNumberBox {
-    width: 70%;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.pagesNumberBox span {
-    font-weight: 600;
-    padding: 2px;
-    font-size: 20px;
-    transition: 0.2s ease;
-}
-.pagesNumberBox span:hover {
-    cursor: pointer;
-    color: grey;
-    transition: 0.2s ease;
-}
-.activePage {
-    font-weight: 900;
-    color: black;
-}
-
 .fieldBox {
     display: flex;
     flex-direction: column;

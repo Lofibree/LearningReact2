@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux/es/exports';
 
 const PhotoHover = (props) => {
     // debugger;
+    // console.log(props)
+
     const [style, setStyle] = useState(s.layOnBgCard)
     const [stylePhoto, setStylePhoto] = useState(s.stylePhoto)
 
@@ -38,7 +40,9 @@ const PhotoHover = (props) => {
                         className={s.img}
                         />
                     <div className={s.name}>
-                        <NavLink to={'/users/' + props.id}>{props.name}</NavLink>
+                        {/* <NavLink to={'/users/' + props.id}> */}
+                            {props.name}
+                            {/* </NavLink> */}
                     </div>
                 </div>
             </div>

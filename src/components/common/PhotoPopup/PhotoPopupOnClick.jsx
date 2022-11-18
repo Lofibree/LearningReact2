@@ -4,6 +4,7 @@ import PhotoPopup from './PhotoPopup';
 
 const PhotoPopupOnClick = (props) => {
     // debugger; 
+    // console.log(props)
     const [popupActive, setPopupActive] = useState(false)
 
     return (

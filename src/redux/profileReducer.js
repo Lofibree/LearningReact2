@@ -125,9 +125,9 @@ export const getPostsThunkCreator = (currentPage) => async (dispatch) => {
     dispatch(setPosts(setPostsPromise))
 }
 
-export const getOnPagePostsThunkCreator = (pageNumber) => async (dispatch) => {
+export const getOnPagePostsThunkCreator = (pageSize, pageNumber) => async (dispatch) => {
     dispatch(setIsFetching(true))
-    let setOnPagePosts = await postsAPI.setOnPagePosts(pageNumber);
+    let setOnPagePosts = await postsAPI.setOnPagePosts(pageSize, pageNumber);
     dispatch(setIsFetching(false));
     dispatch(setCurrentPage(pageNumber));
     dispatch(setPosts(setOnPagePosts));

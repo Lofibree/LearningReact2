@@ -1,0 +1,47 @@
+.photos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.img {
+    align-content: center;
+    width: 175px;
+    height: 140px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: 0.2s ease;
+}
+.img:hover {
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.morePhotos {
+    padding: 5px;
+    margin: 0 auto;
+    font-size: 17px;
+    color: black;
+    -webkit-box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    width:fit-content;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.morePhotos a {
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    margin: 0;
+    padding: 0;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+.morePhotos .imEnter {
+    margin: 0;
+    padding: 0;
+}

@@ -33,6 +33,7 @@ const UsersContainer = () => {
                 status={u.status}
                 photo={u.photos.small}
                 isFollowed={u.followed}
+                key={u.id}
             />
         );
 

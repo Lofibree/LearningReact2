@@ -26,69 +26,66 @@ const instanseVK = axios.create({
         'Content-Type': 'application/json',
     }
 })
+const instanseBrBad = axios.create({
+    baseURL: 'https://www.Breakingbadapi.com/api/'
+})
 
 // API'S
-export const loginAPI = {
-    setIsAuth() {
-        return instanseSAMURAI.get('auth/me')
-        .then(response => {
-            return response.data
-        })
+export const BrBadAPI = {
+    async getCharacters(pageSize, currentPage) {
+        const response = await instanseBrBad.get(`characters?limit=${pageSize}&offset=${currentPage*10}`);
+        return response.data
+        
     },
-    login(email, password) {
-        return instanseSAMURAI.post(`auth/login`, {email, password})
-        .then(response => {
-            // debugger;
-            return response.data
-        })
+    async getRandomCharacters() {
+        const response = await instanseBrBad.get(`character/random?limit=3`);
+        return response.data;
     },
-    logout() {
-        return instanseSAMURAI.delete(`auth/login`)
-        .then(response => {
-            // debugger;
-            return response.data
-        })
+    async getParticularCharacter(id) {
+        // debugger;
+        const response = await instanseBrBad.get(`characters/${id}`);
+        // debugger;
+        return response.data;
     },
 }
-
+export const loginAPI = {
+    async setIsAuth() {
+        const response = await instanseSAMURAI.get('auth/me')
+        return response.data
+    },
+    async login(email, password) {
+        const response = await instanseSAMURAI.post(`auth/login`, { email, password })
+        return response.data
+    },
+    async logout() {
+        const response = await instanseSAMURAI.delete(`auth/login`)
+        return response.data
+    },
+}
 export const postsAPI = {
-    setPosts(currentPage) {
-        return instanseJSONPLACE.get(`posts?_limit=10&_page=${currentPage}`)
-        .then(response => {
-            return response.data
-        })
+    async setPosts(currentPage) {
+        const response = await instanseJSONPLACE.get(`posts?_limit=10&_page=${currentPage}`)
+        return response.data
     },
-    setOnPagePosts(pageNumber) {
-        return instanseJSONPLACE.get(`posts?_limit=10&_page=${pageNumber}`)
-        .then(response => {
-            return response.data
-        })
+    async setOnPagePosts(pageSize, pageNumber) {
+        const response = await instanseJSONPLACE.get(`posts?_limit=${pageSize}&_page=${pageNumber}`)
+        return response.data
     },
-    setParticularPost(id) {
-        return instanseJSONPLACE.get(`posts/${id}`)
-        .then(response => {
-            return response.data
-        })
+    async setParticularPost(id) {
+        const response = await instanseJSONPLACE.get(`posts/${id}`)
+        return response.data 
     },
-    setComments(id) {
-        return instanseJSONPLACE.get(`comments?postId=${id}`)
-        .then(response => {
-            return response.data
-        })
+    async setComments(id) {
+        const response = await instanseJSONPLACE.get(`comments?postId=${id}`)
+        return response.data
     },
-    updateStatus(status) {
-        return instanseSAMURAI.put(`profile/status`, {status})
-        .then(response => {
-            // debugger;
-            return response.data
-        })
+    async updateStatus(status) {
+        const response = await instanseSAMURAI.put(`profile/status`, { status })
+        return response.data
     },
-    getStatus(id) {
-        return instanseSAMURAI.get(`profile/status/${id}`)
-        .then(response => {
-            // debugger;
-            return response.data
-        })
+    async getStatus(id) {
+        const response = await instanseSAMURAI.get(`profile/status/${id}`)
+        return response.data
     },
     // deletePost(id) {
     //     return instanseJSONPLACE.delete(`posts/${id}`)
@@ -98,63 +95,38 @@ export const postsAPI = {
     //     })
     // },
 }
-
 export const usersAPI = {
-    setUsers(pageSize, currentPage) {
-        return instanseSAMURAI.get(`users?count=${pageSize}&page=${currentPage}`)
-            .then(response => {
-                return response.data
-            })
+    async setUsers(pageSize, currentPage) {
+        const response = await instanseSAMURAI.get(`users?count=${pageSize}&page=${currentPage}`)
+        return response.data
     },
-    onPageSetUsers(pageSize, pageNumber) {
-        return instanseSAMURAI.get(`users?count=${pageSize}&page=${pageNumber}`)
-        .then(response => {
-            return response.data
-        })
+    async onPageSetUsers(pageSize, pageNumber) {
+        const response = await instanseSAMURAI.get(`users?count=${pageSize}&page=${pageNumber}`)
+        return response.data
     },
-    setFollow(userId) {
-        return instanseSAMURAI.post(`follow/${userId}`)
-            .then(response => {
-                return response.data
-            });
+    async setFollow(userId) {
+        const response = await instanseSAMURAI.post(`follow/${userId}`)
+        return response.data
     },
-    setUnFollow(userId) {
-        return instanseSAMURAI.delete(`follow/${userId}`)
-            .then(response => {
-                return response.data
-            })
+    async setUnFollow(userId) {
+        const response = await instanseSAMURAI.delete(`follow/${userId}`)
+        return response.data
     },
-    setUserProfile(userId) {
-        return instanseSAMURAI.get(`profile/${userId}`)
-        .then(response => {
-            // debugger;
-            return response.data
-        })
+    async setUserProfile(userId) {
+        const response = await instanseSAMURAI.get(`profile/${userId}`)
+        return response.data
     }
 } 
 export const photosAPI = {
-    getUserPhotos() {
-        return instanseCAT.get('search?limit=10')
-        .then(response => {
-            // debugger
-            return response.data
-        })
+    async getUserPhotos() {
+        const response = await instanseCAT.get('search?limit=10')
+        return response.data
     }
 }
-
 export const vkAPI = {
-    getFriends() {
-        return instanseVK.get('count=5&access_token=vk1.a.Bwcp5TJRLKFB4TjpyLX7m7kvnVqleH-cA39TP4hBYpeHYYgfHNHPUNk69eiKG72k9Hoa3sWaUT_bqxIlMI35KXKvos-wtEZtyQ52D8G8_rJBpOKKrnbQ2a4n1jDA55Pphp75zG0Gkn4OSdtrbCQwTyIVlSVftK_xHaFqj7YhnvlZGf2gTllvKZBXIAD7F7Qm&v=5.52')
-        .then(response => {
-           return response.data
-        })
+    async getFriends() {
+        const response = await instanseVK.get('count=5&access_token=vk1.a.Bwcp5TJRLKFB4TjpyLX7m7kvnVqleH-cA39TP4hBYpeHYYgfHNHPUNk69eiKG72k9Hoa3sWaUT_bqxIlMI35KXKvos-wtEZtyQ52D8G8_rJBpOKKrnbQ2a4n1jDA55Pphp75zG0Gkn4OSdtrbCQwTyIVlSVftK_xHaFqj7YhnvlZGf2gTllvKZBXIAD7F7Qm&v=5.52')
+        return response.data
     }
 }
 
-
-// vk token
-
-// vk1.a.Bwcp5TJRLKFB4TjpyLX7m7kvnVqleH-cA39TP4hBYpeHYYgfHNHPUNk69eiKG72k9Hoa3sWaUT_bqxIlMI35KXKvos-wtEZtyQ52D8G8_rJBpOKKrnbQ2a4n1jDA55Pphp75zG0Gkn4OSdtrbCQwTyIVlSVftK_xHaFqj7YhnvlZGf2gTllvKZBXIAD7F7Qm
-
-// https://oauth.vk.com/blank.html#access_token=vk1.a.Bwcp5TJRLKFB4TjpyLX7m7kvnVqleH-cA39TP4hBYpeHYYgfHNHPUNk69eiKG72k9Hoa3sWaUT_bqxIlMI35KXKvos-wtEZtyQ52D8G8_rJBpOKKrnbQ2a4n1jDA55Pphp75zG0Gkn4OSdtrbCQwTyIVlSVftK_xHaFqj7YhnvlZGf2gTllvKZBXIAD7F7Qm&expires_in=86400&user_id=241946514
-// https://oauth.vk.com/authorize?client_id=51474643&display=page&redirect_uri=&scope=friends,messages&response_type=token&v=5.52

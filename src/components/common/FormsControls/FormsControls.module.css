@@ -5,21 +5,26 @@
     flex-direction: column;
 }
 
-.textareaBox textarea,
+
 .textareaBox input
 {
-    max-width: 280px;
-    max-height: 70px;
-    min-width: 140px;
-    min-height: 50px;
-    background-color: rgb(251, 191, 191);
-    color: rgb(255, 255, 255);
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    height: 40px;
+    width: 300px;
     margin: 5px;
-    font-size: 17px;
+    border: 2px pink solid;
 } 
-
+.textareaBox textarea {
+    border-radius: 5px;
+    background-color: white;
+    min-height: 40px;
+    min-width: 300px;
+    max-height: 80px;
+    max-width: 300px;
+    margin: 5px;
+    border: 2px pink solid;
+}
 .textareaBox.error textarea,
 .textareaBox.error input
 {
@@ -36,11 +41,15 @@
 }
 
 .button {
-    border-radius: 10px; 
+    border-radius: 5px; 
     padding: 5px;
-    background-color: black;
-    width: 50px;
-    color: white;
+    margin: 5px;
+    margin-top: 15px;
+    border: 4px pink solid;
+    background-color: white;
+    width: 300px;
+    color: black;
+    font-size: 17px;
     transition: 0.2s ease;
 }
 .button:hover {

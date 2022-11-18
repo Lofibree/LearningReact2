@@ -5,6 +5,7 @@ import PhotoHover from '../PhotoHover/PhotoHover';
 
 const PhotoPopup = (props) => {
 // debugger;
+// console.log(props)
 
     return (
         <div className={props.popupActive ? (s.popup + ' ' + s.active) : s.popup}

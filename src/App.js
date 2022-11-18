@@ -15,6 +15,8 @@ import { initializeApp } from './redux/appReducer';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Preloader from './components/common/Preloader/Preloader';
+import BrBadContainer from './components/BrBad/BrBadContainer';
+import BrBadCharacter from './components/BrBad/BrBadCharacter/BrBadCharacter';
 
 
 const App = () => {
@@ -61,6 +63,12 @@ const App = () => {
             />
             <Route path='/photos/:id'
               element={<UserPhotosContainer />}
+            />
+            <Route path='/BrBad'
+              element={<BrBadContainer />}
+            />
+            <Route path='/BrBad/:id'
+              element={<BrBadCharacter />}
             />
           </Routes>
         </div>

@@ -1,36 +1,13 @@
 import React from 'react';
+import Paginator from '../common/Paginator/Paginator';
 import s from './Users.module.scss';
 
 
 const Users = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-    let pagesArr = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pagesArr.push(i);
-    }
-
     return (
         <div className={s.users}>
-            <div className={s.pagesNumberBox}>
-                {pagesArr.map((p) => {
-                    if (p <= 10) {
-                        return <span
-                            className={
-                                props.currentPage === p
-                                    ? s.selectedPage
-                                    : undefined
-                            }
-                            onClick={() => {
-                                props.onPageChanged(props.pageSize, p)
-                            }}
-                        >
-                            {p}
-                        </span>
-                    }
-                })}
-            </div>
+            <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged}/>
             {props.usersItemsEl}
         </div>
     )

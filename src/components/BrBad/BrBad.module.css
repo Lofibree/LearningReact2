@@ -1,0 +1,28 @@
+.charactersContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.characters {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+.arrowBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 25px;
+}
+.arrowBtn {
+    font-size: 35px;
+}
+.arrowBtn:hover {
+    cursor: pointer;
+}
+.arrowBtn a{
+    text-decoration:none;
+    color: white;
+}

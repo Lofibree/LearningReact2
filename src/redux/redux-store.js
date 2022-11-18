@@ -1,14 +1,13 @@
-import  {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
+import  {applyMiddleware, combineReducers, compose, legacy_createStore as createStore} from "redux";
 import profileReducer from "./profileReducer";
 import messagesReducer from "./messagesReducer";
 import navBarReducer from "./navBarReducer";
 import usersReduser from './usersReducer';
 import authReducer from './authReducer';
 import thunkMiddleware from 'redux-thunk'
-// import { reducer as formReducer } from 'react-final-form';
-// import reducer from 'redux-final-form';
 import appReduser from "./appReducer";
 import userPhotosReducer from "./userPhotosReducer";
+import brBadReducer from './brBadReducer'
 
 
 let reducers = combineReducers({
@@ -17,15 +16,19 @@ let reducers = combineReducers({
     usersPage: usersReduser,
     navBar: navBarReducer,
     auth: authReducer,
-    // form: formReducer,
     app: appReduser,
-    userPhotos: userPhotosReducer
+    userPhotos: userPhotosReducer,
+    breakingBad: brBadReducer
 });
+
+
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 
-window.store = store;
+window._store_ = store;
 
 
 export default store;

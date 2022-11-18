@@ -13,8 +13,8 @@ const MyPostsContainerEff = (props) => {
     props.getPostsThunkCreator(props.currentPage)
   }, [])
 
-  const onPageChanged = (pageNumber) => {
-    props.getOnPagePostsThunkCreator(pageNumber);
+  const onPageChanged = (pageSize, pageNumber) => {
+    props.getOnPagePostsThunkCreator(pageSize, pageNumber);
   }
 
   return (

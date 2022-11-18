@@ -1,0 +1,51 @@
+.img {
+    width: 300px;
+    border-radius: 10px;
+}
+.characterCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
+}
+.arrovBtnBox {
+    display: flex;
+    justify-content:center;
+}
+.arrowBtn {
+    font-size: 35px;
+    margin: 20px auto;
+}
+.arrowBtn:hover {
+    cursor: pointer;
+}
+.arrowBtn a{
+    text-decoration:none;
+    color: white;
+}
+.name {
+    font-weight: 600;
+    font-size: 25px;
+    margin: 10px auto;
+}
+.characterInfo {
+    max-width: 300px;
+    word-wrap: break-word;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    /* align-items: center; */
+    justify-content: center;
+}
+.spanInfo {
+    font-weight: 500;
+    font-size: 20px;
+}
+.spanInfoTitle {
+    color: rgb(233, 233, 233);
+    font-style: italic;
+}

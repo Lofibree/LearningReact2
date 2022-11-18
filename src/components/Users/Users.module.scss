@@ -113,33 +113,3 @@
     color: black;
     transition: 0.2s ease;
 }
-.pagesNumberBox {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    width: 75%;
-}
-.pagesNumberBox span {
-    padding: 5px;
-    text-align: center;
-    justify-content: center;
-}
-.pagesNumberBox span:hover {
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-.selectedPage {
-    width: 32px;
-    height: 32px;
-    font-weight: 900;
-    border-radius: 10px;
-    -webkit-box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
-    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 50%);
-    color: white;
-}
-.selectedPage:hover {
-    cursor: pointer;
-}

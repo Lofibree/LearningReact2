@@ -149,7 +149,6 @@ export const setUnFollowThunkCreator = (userId) => async (dispatch) => {
 }
 
 export const getUserThunkCreator = (userId) => async (dispatch) => {
-    debugger;
     dispatch(setIsFetchingUserAC(true))
     let setUserProfilePromise = await usersAPI.setUserProfile(userId);
     dispatch(setIsFetchingUserAC(false))

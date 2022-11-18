@@ -30,7 +30,7 @@ const Login = (props) => {
     );
 };
 
- 
+  
 const LoginForm = (props) => {
     return (
         <Form
@@ -41,8 +41,15 @@ const LoginForm = (props) => {
                 const { handleSubmit } = renderProps;
                 return (
                     <form onSubmit={handleSubmit} className={s.formLogin}>
-                        {CreateField('email', 'email', 'email', composeValidators(required, minFieldLength(5)), Input)}
-                        {CreateField('password', 'password', 'password', composeValidators(required, minFieldLength(5)), Input)}
+                        <div className={s.formTitle}>Login</div>
+                        <div className={s.fieldTitle}>Username</div>
+                        <div>
+                            {CreateField('email', 'email', 'email', composeValidators(required, minFieldLength(5)), Input)}
+                        </div>
+                        <div className={s.fieldTitle}>Password</div>
+                        <div>
+                            {CreateField('password', 'password', 'password', composeValidators(required, minFieldLength(5)), Input)}
+                        </div>
                         <Button type='submit'>Login</Button>
                     </form>
                 )

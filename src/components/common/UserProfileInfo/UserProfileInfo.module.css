@@ -45,7 +45,7 @@
 }
 .usersId {
     display: flex;
-    justify-content: center;
+    justify-content: center; 
     color: white;
     font-size: 25px;
 }
@@ -83,7 +83,7 @@
     font-weight: 600;
 }
 
-.userPhotosBox {
+.userMediaBox {
     align-items: center;
     justify-content: center;
     margin-top: 15px;
@@ -102,6 +102,10 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
+}
+.photosTitle:hover {
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 .photos {
     display: flex;
@@ -135,7 +139,6 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
-    /* justify-content: center; */
 }
 .morePhotos a {
     text-decoration: none;
@@ -150,4 +153,19 @@
 .morePhotos .imEnter {
     margin: 0;
     padding: 0;
+}
+.mediaUserTitleBox {
+    display: flex;
+}
+.photosPreviewCard {
+    display: block;
+}
+.photosPreviewCard.active{
+    display: none;
+}
+.BrBadCard {
+    display: none;
+}
+.BrBadCard.active {
+    display: block;
 }
